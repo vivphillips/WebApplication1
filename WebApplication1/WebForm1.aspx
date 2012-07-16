@@ -1,17 +1,26 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication1.WebForm1" %>
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <title></title>
 </head>
 <body>
+    <h1>Template Design</h1>
+   <div style="border : solid 2px #0ff; padding : 4px; width : 1000px; height : 600px; overflow:auto;">
     <%=LoadSVG() %>
-  <input id="Button1" type="button" value="Fit text" onclick="fit_text(); return false;" />
-    <input id="Button2" type="button" value="Fit text via JQuery"/>
+      </div>
+ <input id="Button1" type="button" value="Zoom Out"/>
+ <input id="Button2" type="button" value="Zoom In"/>
+    <div id="scale">100%</div>
 </body>
 
 <script src="scripts/jquery-1.7.2.js"></script>
+<script src="scripts/WebForm1Script.js"></script>
+
+
+    <%--Inline Version: --%>
+<%--
 <script type="text/javascript">
 
     // Privileged method
@@ -65,8 +74,45 @@
     }());
 
 
-    function fit_text()
+    function zoom_out()
     {
+
+        var v = document.getElementById("ATest");
+
+        t = v.transform.baseVal.getItem(0);
+        if (t.matrix.a > 1) {
+            var f = t.matrix.a / 10;
+            t.matrix.a -= f; t.matrix.d -= f;
+            var s = Math.round(t.matrix.a * 100) + "%";
+          //  var v2 = $('#theDoc');
+          //  v2.css("width",s);
+          //  v2.css("height", s);
+
+            $('#scale')[0].innerHTML = s;
+
+        }
+    
+
+    }
+
+    function zoom_in()
+    {
+
+        var v = document.getElementById("ATest");
+
+        t = v.transform.baseVal.getItem(0);
+
+        var f = t.matrix.a / 10;
+
+        t.matrix.a += f; t.matrix.d += f;
+        var s = Math.round(t.matrix.a * 100) + "%";
+       // var v2 = $('#theDoc');
+       // v2.css("width", (t.matrix.a * 100) + "%");
+       // v2.css("height", (t.matrix.a * 100) + "%");
+        
+        $('#scale')[0].innerHTML = s;
+
+
         ////////////////////////////////////////////////////////
         var dog = {};
         Object.defineProperty(dog, "name", { get: function () { return name; }, set: function (theName) { name = theName; } });
@@ -75,7 +121,7 @@
 
         var d = Object.create(dog);
         d.name = "Rover";
-        document.getElementById("blah").textContent = d.name;
+    //    document.getElementById("blah").textContent = d.name;
         ///////////////////////////////////////////////////////
 
         var cat = {
@@ -84,7 +130,7 @@
             set ItsName(newName) { this.name = newName; }
         };
 
-        document.getElementById('blah2').textContent = cat.name;
+      //  document.getElementById('blah2').textContent = cat.name;
         //////////////////////////////////////////////////////////
         var c = new Container("Something");
         var xx = c.Hidden();
@@ -213,11 +259,11 @@
 
     $(document).ready(function ()
     {
-        alert("document ready");
-        $("#Button2").click(fit_text);
+        $("#Button1").click(zoom_out);
+        $("#Button2").click(zoom_in);
     });
 
 </script>
-
+--%>
 </html>
 

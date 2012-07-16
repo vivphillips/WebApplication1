@@ -32,7 +32,7 @@ namespace WebApplication1
 
         public string LoadSVG()
         {
-            string file = HttpContext.Current.Server.MapPath("~/SVGS/Test.svg");
+            string file = HttpContext.Current.Server.MapPath("~/SVGS/test2.svg");
 
             XmlDocument doc = new XmlDocument();
             doc.Load(file);
@@ -46,125 +46,89 @@ namespace WebApplication1
 
             foreach (XElement x in v2)
             {
+
                 float w = Single.Parse(x.Attribute("displaywidth").Value);
                 float h = Single.Parse(x.Attribute("displayheight").Value);
-                //TextLayoutInfo tlf = DoSizing(w, h, "Once upon a time in a land faraway there lived a pig.  The pig was not very bright as is often the way with such animals. A bit more text");
-                //TextLayoutInfo tlf = DoSizing(w, h, "A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A ");
-                string theString = new StringBuilder().Insert(0, "A Ham and Cheese sandwich on brown bread ", 10).ToString();
-                TextLayoutInfo tlf = DoSizing(w, h, theString);
+
+                string units = string.Empty;
+                if (x.Attribute("units") != null)
+                    units = x.Attribute("units").Value;
+                var fontAttrib = x.Attribute("font-family");
+
+                string fontFamily = fontAttrib != null ? fontAttrib.Value : "Arial";
+
+                //string theString = new StringBuilder().Insert(0, "A Ham and Cheese sandwich on brown bread with dill pickle. (Yum, Yum) ", 10).ToString();
+                string theString = "Ham and Cheese Sandwich on white bread with margarine";
+                TextLayoutInfo tlf = DoSizing2(w, h, theString, units, fontFamily);
+
+                //Draw a rectangle
+                XElement theBorder = new XElement(svg + "rect");
+
+                theBorder.Add(new XAttribute("width", w.ToString() + units));
+                theBorder.Add(new XAttribute("height", h.ToString() + units));
+                theBorder.Add(new XAttribute("fill", "none"));
+                theBorder.Add(new XAttribute("stroke", "black"));
+                theBorder.Add(new XAttribute("stroke-width", "0.5"));
+                x.Add(theBorder);
 
                 XElement elem = new XElement(svg + "text");
-                XAttribute attrib = new XAttribute("font-size", tlf.FontSize.ToString() + "in");
+                elem.Add(new XAttribute("text-anchor", "middle"));
+                XAttribute attrib = new XAttribute("font-size", tlf.FontSize.ToString() + units);
                 elem.Add(attrib);
-                float linePos = 0;
-                XAttribute step2 = new XAttribute("x", "0in");
+                XAttribute a4 = new XAttribute("font-family", fontFamily);
+                elem.Add(a4);
+                elem.Add(new XAttribute("font-stretch", "normal"));
+                float linePos = 0.02f;
+                XAttribute step2 = new XAttribute("x", (w / 2).ToString() + units);
                 foreach (string s in tlf.Lines)
                 {
                     XElement e2 = new XElement(svg + "tspan", s);
                     linePos += tlf.VerticalStep;
-                    XAttribute step = new XAttribute("y", linePos.ToString() + "in");
+                    XAttribute step = new XAttribute("y", linePos.ToString() + units);
                     e2.Add(step);
                     e2.Add(step2);
 
                     elem.Add(e2);
                 }
-
-
                 x.Add(elem);
             }
-
             return xdoc.ToString();
-
-            //using (StreamReader sr = new StreamReader(file))
-            //{
-            //    return sr.ReadToEnd();
-            //}
         }
 
 
-        TextLayoutInfo DoSizing(float boxWidth, float boxHeight, string s)
+        TextLayoutInfo DoSizing2(float boxWidth, float boxHeight, string s, string units, string fontFamily)
         {
-            float[,] l;
-            float h;
+            GraphicsUnit gUnits = GraphicsUnit.Pixel;
+            if (units != string.Empty)
+                gUnits = units == "mm" ? GraphicsUnit.Millimeter : GraphicsUnit.Inch;
 
             TextLayoutInfo tlf = new TextLayoutInfo();
 
-            float initialBoxWidth, initialBoxHeight;
+            string[] words = s.Split(' ');
 
-            float startFontSize = 1;
+
+            float initialBoxWidth = boxWidth;
+            float initialBoxHeight = boxHeight;
             using (Bitmap bm = new Bitmap(10, 10))
             {
                 using (Graphics g = Graphics.FromImage(bm))
                 {
-                    g.PageUnit = GraphicsUnit.Inch;
+                    g.PageUnit = gUnits;
 
-                    initialBoxWidth = boxWidth;
-                    initialBoxHeight = boxHeight;
+                    float testFontSize = gUnits == GraphicsUnit.Inch ? 1 : 25;
 
-                    Font f = new Font("Arial", startFontSize, GraphicsUnit.Inch);
-
-                    string[] words = s.Split(' ');
-                    l = new float[words.Length, 2];
-
-                    for (int i = 0; i < words.GetLength(0); i++)
+                    Font f = new Font(fontFamily, testFontSize, gUnits);
+                    float h = g.MeasureString("M", f).Height;
+                    while (!TestSize(words, boxHeight, boxWidth, f, g, h, tlf))
                     {
-                        l[i, 0] = g.MeasureString(words[i], f).Width;
-                        l[i, 1] = g.MeasureString(" " + words[i], f).Width;
+                        boxHeight += h;
+                        float factor = boxHeight / initialBoxHeight;
+                        boxWidth = initialBoxWidth * factor;
                     }
+                    tlf.FontSize = (testFontSize / boxWidth) * initialBoxWidth;
 
-
-
-                    ////Start with a box scaled to exact number of lines:
-                    //boxHeight = h = g.MeasureString(s, f).Height;
-                    //float factor = boxHeight / initialBoxHeight;
-                    //boxWidth = boxWidth * factor;                    
-
-                    h = g.MeasureString(s, f).Height;
-
-                    while (!TestBox(l, h, boxWidth, boxHeight, words))
-                    {
-                        {
-                            //For testing just make assumption that box is too small
-
-                            //float increase = boxHeight + h;
-                            //float factor = boxHeight / increase;
-                            //boxWidth /= factor;
-                            //boxHeight = increase;
-
-                            boxHeight += h;
-                            float factor = boxHeight / initialBoxHeight;
-                            boxWidth = initialBoxWidth*factor;
-
-                        }
-                    }
-                    tlf.FontSize = startFontSize / boxWidth * initialBoxWidth;
-
-                    Font f2 = new Font("Arial", tlf.FontSize, GraphicsUnit.Inch);
+                    Font f2 = new Font(fontFamily, tlf.FontSize, gUnits);
                     tlf.VerticalStep = g.MeasureString("M", f2).Height;
-                    float length = 0;
-                    string line = String.Empty;
-
-                    for (int i = 0; i < words.GetLength(0); i++)
-                    {
-                        if (length == 0)
-                            length += g.MeasureString(words[i], f2).Width;
-                        else
-                            length += g.MeasureString(" " + words[i], f2).Width;
-                        if (length < initialBoxWidth)
-                            if (i == 0)
-                                line += words[i];
-                            else
-                                line += " " + words[i];
-                        else
-                        {
-                            length = 0;
-                            i--;
-                            tlf.Lines.Add(line);
-                            line = string.Empty;
-                        }
-                    }
-                    if (line != string.Empty)
-                        tlf.Lines.Add(line);
 
                 }
             }
@@ -172,43 +136,31 @@ namespace WebApplication1
         }
 
 
-        bool TestBox(float[,] list, float height, float boxwidth, float boxheight, string[] words)
+        bool TestSize(string[] words, float boxHeight, float boxWidth, Font f, Graphics g, float h, TextLayoutInfo tlf)
         {
-            System.Diagnostics.Debug.WriteLine("Trying: " + boxheight.ToString());
-
-            int availableLines = (int)(boxheight / height)-1;
-
-
-            System.Diagnostics.Debug.WriteLine("Available lines: " + availableLines.ToString());
-            System.Diagnostics.Debug.WriteLine("-----------");
-
-            int currentLine = 1;
-            float currentLineLength = 0;
-            // lineString just added for debugging purposes
-            string lineString = string.Empty;
-            for (int i = 0; i < list.GetLength(0); i++)
+            int availableLines = ((int)(boxHeight / h)) -1;
+            int currentLine = 0;
+            tlf.Lines = new List<string>();
+            string tryLine = string.Empty;
+            for (int i = 0; i < words.Length; i++)
             {
-                if (currentLineLength == 0)
-                    currentLineLength += list[i,0];
-                else
-                    currentLineLength += list[i,1];
-                if (currentLineLength > boxwidth)
+                string nextWord = (tryLine != string.Empty ? " " : "") + words[i];
+                float nextLength = g.MeasureString(tryLine + nextWord, f).Width;
+                if (nextLength > boxWidth)
                 {
-                    if (currentLine++ > availableLines)
-                        return false;
-                    currentLineLength = 0;
-                    System.Diagnostics.Debug.WriteLine(lineString);
-                    lineString = string.Empty;
                     i--;
+                    tlf.Lines.Add(tryLine);
+                    tryLine = string.Empty;
+                    // move to next line
+                    if (++currentLine > availableLines)
+                        return false;
                 }
                 else
-                {
-                    lineString += words[i] + " ";
-                }
+                    tryLine += nextWord;
             }
-            System.Diagnostics.Debug.WriteLine(lineString);
+            if (tryLine != string.Empty)
+                tlf.Lines.Add(tryLine);
             return true;
         }
-
-     }
+    }
 }

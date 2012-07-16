@@ -1,19 +1,55 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    version="1.2" id="theDoc" width="500" height="500">
-    <g>
-        <defs>
-            <clipPath id="rectpath">
-                <path d="M 20 20 h 150 v 150 h -150 z"></path>
-            </clipPath>
-        </defs>
-        <use xlink:href="#rectpath" id="clonepath"></use>
-        <image x="0" y="0" width="100%" height="100%" xlink:href="SVGS/Penguins.jpg" clip-path="url(#rectpath)"></image>
-    </g>
-    <g transform="translate(200 200)">
-        <clipPath id="ClipPath1" transform="translate(50 0)  rotate(25)">
-            <path d="M 40 40 h 150 v 150 h -150 z"></path>
-        </clipPath>
-        <image  width="100%" height="100%" xlink:href="SVGS/Penguins.jpg" clip-path="url(#ClipPath1)" ></image>
+    version="1.1" id="theDoc" width="100%" height="100%">
+    <symbol id="Content">
+        <g >
+            <g transform="translate(10,10)" id="InsertPoint"  displaywidth="50" displayheight="30" />
+            <g transform="translate(15,45)" id="InsertPoint"  displaywidth="40" displayheight="20"  />
+            <g transform="translate(18,70)" id="InsertPoint"  displaywidth="35" displayheight="10" />
+        </g>
+    </symbol>
+    <symbol id="Outline">
+        <rect x=".25" y=".25" stroke="red" fill="none" stroke-width=".5" width="64" height="90"></rect>
+    </symbol>
+    <symbol id="theRow">
+        <g transform="translate(0,0)">
+            <use xlink:href="#Outline"></use>
+            <use xlink:href="#Content" />
+        </g>
+        <g transform="translate(67,0)">
+            <use xlink:href="#Outline"></use>
+            <use xlink:href="#Content" />
+        </g>
+        <g transform="translate(134,0)">
+            <use xlink:href="#Outline"></use>
+            <use xlink:href="#Content" />
+        </g>
+    </symbol>
+
+    <!--Sheet-->
+    <g transform="scale(3.7795,3.7795) translate(5,10)" id="ATest">
+        <!--Row 1-->
+        <g transform="translate(0,0)">
+            <use xlink:href="#theRow"></use>
+        </g>
+        <!--Row 2-->
+        <g transform="translate(0,92)">
+            <use xlink:href="#theRow"></use>
+        </g>
+        <!--Row 3  (This doesn't get the text in Chrome-->
+        <g transform="translate(0,184)">
+            <g transform="translate(0,0)">
+                <use xlink:href="#Outline"></use>
+                <use xlink:href="#Content" />
+            </g>
+            <g transform="translate(67,0)">
+                <use xlink:href="#Outline"></use>
+                <use xlink:href="#Content" />
+            </g>
+            <g transform="translate(134,0)">
+                <use xlink:href="#Outline"></use>
+                <use xlink:href="#Content" />
+            </g>
+        </g>
     </g>
 </svg>
