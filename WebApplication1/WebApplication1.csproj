@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,9 @@
       <HintPath>..\..\..\..\..\Downloads\Jint.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -60,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AjaxTest.aspx" />
     <Content Include="normalize.css" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\WebForm1Script.js" />
@@ -76,6 +81,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SVGS\Test4.svg" />
+    <Content Include="SVGS\XMLFile1.xml" />
+    <Content Include="TestService.svc" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
@@ -83,6 +90,13 @@
     <Content Include="WebForm4.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxTest.aspx.cs">
+      <DependentUpon>AjaxTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjaxTest.aspx.designer.cs">
+      <DependentUpon>AjaxTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Handler1.ashx.cs">
       <DependentUpon>Handler1.ashx</DependentUpon>
     </Compile>
@@ -93,6 +107,9 @@
     </Compile>
     <Compile Include="SocketTest.aspx.designer.cs">
       <DependentUpon>SocketTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestService.svc.cs">
+      <DependentUpon>TestService.svc</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -135,6 +152,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Handler1.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TextHandling\TextHandling.csproj">
+      <Project>{c72b4d90-e995-4eb8-ac8e-73d2acc8b9b2}</Project>
+      <Name>TextHandling</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

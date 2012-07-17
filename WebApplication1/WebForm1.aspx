@@ -6,21 +6,23 @@
     <title></title>
 </head>
 <body>
+    <form id="form1" runat="server">
     <h1>Template Design</h1>
    <div style="border : solid 2px #0ff; padding : 4px; width : 1000px; height : 600px; overflow:auto;">
     <%=LoadSVG() %>
       </div>
  <input id="Button1" type="button" value="Zoom Out"/>
  <input id="Button2" type="button" value="Zoom In"/>
+    <input id="Button3" type="button" value="Load" />
     <div id="scale">100%</div>
+    </form>
 </body>
 
 <script src="scripts/jquery-1.7.2.js"></script>
-<script src="scripts/WebForm1Script.js"></script>
-
+<%--<script src="scripts/WebForm1Script.js"></script>
+--%>
 
     <%--Inline Version: --%>
-<%--
 <script type="text/javascript">
 
     // Privileged method
@@ -74,6 +76,24 @@
     }());
 
 
+    function loadup()
+    {
+
+        var client = new XMLHttpRequest();
+        client.open("GET", "SVGS/XMLFile1.xml");
+        client.onreadystatechange = handler;
+        client.send();
+
+    }
+
+    function handler()
+    {
+        if (this.readyState == 4  && this.status==200 ) {
+            var x = 'b';
+        }
+    }
+
+
     function zoom_out()
     {
 
@@ -84,15 +104,12 @@
             var f = t.matrix.a / 10;
             t.matrix.a -= f; t.matrix.d -= f;
             var s = Math.round(t.matrix.a * 100) + "%";
-          //  var v2 = $('#theDoc');
-          //  v2.css("width",s);
-          //  v2.css("height", s);
+         //    var v2 = $('#theDoc');
+         //   v2.css("width",s);
+         // v2.css("height", s);
 
             $('#scale')[0].innerHTML = s;
-
         }
-    
-
     }
 
     function zoom_in()
@@ -106,9 +123,9 @@
 
         t.matrix.a += f; t.matrix.d += f;
         var s = Math.round(t.matrix.a * 100) + "%";
-       // var v2 = $('#theDoc');
-       // v2.css("width", (t.matrix.a * 100) + "%");
-       // v2.css("height", (t.matrix.a * 100) + "%");
+        //var v2 = $('#theDoc');
+        //v2.css("width", (t.matrix.a * 100) + "%");
+        //v2.css("height", (t.matrix.a * 100) + "%");
         
         $('#scale')[0].innerHTML = s;
 
@@ -261,9 +278,10 @@
     {
         $("#Button1").click(zoom_out);
         $("#Button2").click(zoom_in);
+        $("#Button3").click(loadup);
     });
 
 </script>
---%>
+
 </html>
 
