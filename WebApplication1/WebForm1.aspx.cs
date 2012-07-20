@@ -180,10 +180,6 @@ namespace WebApplication1
                         XElement textElement = new XElement(svg + "text");
                         //elem.Add(new XAttribute("text-anchor", "middle"));
 
-
- 
-
-
                         textElement.Add(new XAttribute("font-size", layout.Font.Size.ToString() + units));
                        // textElement.Add(new XAttribute("font-family", layout.Font.FontFamily.ToString()));
                        // textElement.Add(new XAttribute("font-stretch", "normal"));
