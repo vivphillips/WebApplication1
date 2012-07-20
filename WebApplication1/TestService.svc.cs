@@ -44,17 +44,24 @@ namespace WebApplication1
         [OperationContract]
         public string GetDocument(int pageCount)
         {
-            LLL.TextHandling.PageBuilder pb = new LLL.TextHandling.PageBuilder();
-            string s2 = HttpContext.Current.Server.MapPath("~/SVGS/test2.svg");
-            string preparedSVGPage = pb.BuildPage(s2);
-            for (int i = 0 ; i < pageCount ; i++)
+            try
             {
-                //Convert the page to PDF and store
+                LLL.TextHandling.PageBuilder pb = new LLL.TextHandling.PageBuilder();
+                string s2 = HttpContext.Current.Server.MapPath("~/SVGS/test2.svg");
+                string preparedSVGPage = pb.BuildPage(s2);
+                for (int i = 0; i < pageCount; i++)
+                {
+                    //Convert the page to PDF and store
+                }
+                //Concat the pages
+                string result = "Nothing to send";
+                //Return final file as string.....
+                return result;
             }
-            //Concat the pages
-            string result = "Nothing to send";
-            //Return final file as string.....
-            return result;
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
         }
 
 
