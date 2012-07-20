@@ -34,6 +34,15 @@
             v.Make = "Subaru";
             v.Model = "Legacy";
             service.UpgradeCar(v, onUpgraded, null, null);
+
+            var result = service.GetDocument(10,docReceived,null,null);
+
+        }
+
+
+        function docReceived(result)
+        {
+            alert("Doc received");
         }
 
         function onSuccess(result)
