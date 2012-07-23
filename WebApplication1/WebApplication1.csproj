@@ -76,6 +76,12 @@
     <Content Include="AjaxTest.aspx" />
     <Content Include="BlobStoreTest.aspx" />
     <Content Include="normalize.css" />
+    <Content Include="PDF_Merge\libiconv2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PDF_Merge\pdftk.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\WebForm1Script.js" />
     <Content Include="SocketTest.aspx" />
@@ -187,7 +193,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="PDF_Temp\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="startup\startup.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
