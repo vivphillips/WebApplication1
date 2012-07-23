@@ -79,6 +79,12 @@
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\WebForm1Script.js" />
     <Content Include="SocketTest.aspx" />
+    <Content Include="startup\Microsoft.WindowsAzure.StorageClient.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="startup\packagedownloader.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SVGS\delux.svg" />
     <Content Include="SVGS\Test3.svg">
       <SubType>Designer</SubType>
@@ -181,8 +187,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="startup.cmd">
+    <Content Include="startup\startup.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

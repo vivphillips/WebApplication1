@@ -3,7 +3,7 @@
   <Role name="WebApplication1">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=planglow;AccountKey=8ColKNpn1RRMDRUwQniowKazfhmoGBJSwVlR6zks0up2Kcg/WkNH4dsKoVC1C6/FEPJcZqTP/+EAlSln2SxKPA==" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="admins" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEA8sWC1HteSLQq0C7OAqcKYwDQYJKoZIhvcNAQEBBQAEggEAU4+Q2RjQgSrmCoT++XUEaaKPyLZXavq4QfQqR4fDKNqoBWzsLo+5u5ykW5TjR5GYzktMuArDxBRjVVYKtuqVknNlIO5kRpGdwmzXoa5TIsLtwLm3YPJD7aZi6LzidLUUO6Fq+NDsGujiS44pIyFnUJpxjbLclwgeIxpw/PvHbLF8IIV79fxWi7FTBPppwClfC1mO0Q5D8gsfkEd2u8UqJL9nrYl2Uo54zbRFwCqW5KXDjq/rA6AKyplyA9Ap5fPBg0/H2Qy6Khm0jw0XP9t9R/vyH5vKlVEDTUslhz+vnKi3wRyRUS3MOr7Nm5vNLxOlO3E5w+qZIRM+MTUSXpMe/jAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECHd1HLal6teigBAJsAoyvGGsXDkOAbWbmaGj" />
