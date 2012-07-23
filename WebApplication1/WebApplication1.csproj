@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AjaxTest.aspx" />
+    <Content Include="BlobStoreTest.aspx" />
     <Content Include="normalize.css" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\WebForm1Script.js" />
@@ -92,7 +93,9 @@
     <Content Include="SVGS\Test4.svg" />
     <Content Include="SVGS\XMLFile1.xml" />
     <Content Include="TestService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebForm3.aspx" />
@@ -105,6 +108,13 @@
     </Compile>
     <Compile Include="AjaxTest.aspx.designer.cs">
       <DependentUpon>AjaxTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BlobStoreTest.aspx.cs">
+      <DependentUpon>BlobStoreTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BlobStoreTest.aspx.designer.cs">
+      <DependentUpon>BlobStoreTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Handler1.ashx.cs">
       <DependentUpon>Handler1.ashx</DependentUpon>

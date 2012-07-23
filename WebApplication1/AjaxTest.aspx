@@ -25,15 +25,14 @@
         function run()
         {
             var service = new WebApplication1.TestService();
-            //service.SayHello("Viv", onSuccess, null, null);
+            service.SayHello("Viv", onSuccess, null, null);
 
-            //service.GetCar(received, null, null);
-            //service.SayGoodbye("Viv", onSuccess, null, null);
-
-            //var v = new WebApplication1.Car();
-            //v.Make = "Subaru";
-            //v.Model = "Legacy";
-            //service.UpgradeCar(v, onUpgraded, null, null);
+            service.GetCar(received, null, null);
+            service.SayGoodbye("Viv", onSuccess, null, null);
+            var v = new WebApplication1.Car();
+            v.Make = "Subaru";
+            v.Model = "Legacy";
+            service.UpgradeCar(v, onUpgraded, null, null);
 
             var result = service.GetDocument(10,docReceived,null,null);
 
