@@ -7,6 +7,8 @@
     <title></title>
 </head>
 <body>
+    <script src="scripts/jquery-1.7.2.js"></script>
+
     <form id="form1" runat="server">
     <div>
     </div>
@@ -18,6 +20,8 @@
     <p>
         <input id="Button1" type="button" value="button" onclick="run();" />
     </p>
+        <iframe id="PDFContent"></iframe>
+        <iframe id="PDF2"  width="1000" height="400" ></iframe>
     </form>
 
     <script type="text/javascript">
@@ -25,23 +29,28 @@
         function run()
         {
             var service = new WebApplication1.TestService();
-            service.SayHello("Viv", onSuccess, null, null);
+          //  service.SayHello("Viv", onSuccess, null, null);
 
-            service.GetCar(received, null, null);
-            service.SayGoodbye("Viv", onSuccess, null, null);
-            var v = new WebApplication1.Car();
-            v.Make = "Subaru";
-            v.Model = "Legacy";
-            service.UpgradeCar(v, onUpgraded, null, null);
+         //   service.GetCar(received, null, null);
+        //    service.SayGoodbye("Viv", onSuccess, null, null);
+        //    var v = new WebApplication1.Car();
+        //    v.Make = "Subaru";
+       //     v.Model = "Legacy";
+       //     service.UpgradeCar(v, onUpgraded, null, null);
 
-            var result = service.GetDocument(10,docReceived,null,null);
+             var result = service.GetDocument(10,docReceived,null,null);
 
+             var xx = document.getElementById("PDF2");
+             xx.setAttribute("src","GetPdf.aspx?TextExample.pdf");
         }
 
 
         function docReceived(result)
         {
-            alert("Doc received");
+            //alert("Doc received");
+          //  PDFContent.Data = result;
+            var obj = document.getElementById("PDFContent");
+            obj.Data = result;
         }
 
         function onSuccess(result)
@@ -57,6 +66,15 @@
         function onUpgraded(result)
         {
             alert(result.Model);
+        }
+
+        $(document).ready(function ()
+        {
+        });
+
+        function bang()
+        {
+            alert("IFrame loaded");
         }
 
     </script>

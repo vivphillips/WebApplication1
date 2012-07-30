@@ -1,0 +1,277 @@
+%PDF-1.0
+1 0 obj
+<<
+/Type /Catalog
+/Pages 3 0 R
+/Outlines 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Outlines
+/Count 0
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Pages
+/Count 3
+/Kids [4 0 R 10 0 R 200 0 R]
+>>
+endobj
+
+4 0 obj
+<<
+/Type /Page
+/Parent 3 0 R
+/Resources << /Font << /F1 7 0 R >> /ProcSet 6 0 R /XObject <</MyObject 14 0 R >> >>
+/MediaBox [0 0 612 792]
+/Contents 5 0 R
+/XObject <</MyObject 14 0 R >>
+% Example rotate (must be multiple of 90)
+%/Rotate 90
+>>
+endobj
+
+10 0 obj
+<<
+/Type /Page
+/Parent 3 0 R
+/Resources << /Font << /F1 7 0 R >> /ProcSet 6 0 R >>
+/MediaBox [0 0 612 792]
+/Contents 11 0 R
+>>
+endobj
+
+133 0 obj
+
+<<
+
+/ExtGState 
+<<
+/gs1 
+<<
+/ca 0.5
+>>
+>>
+
+/Font 
+<<
+/F0 
+<<
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Type /Font
+>> 
+>>
+
+/XObject 
+<<
+/X1 15 0 R
+>>
+
+/Pattern 
+<<
+
+    /GradientShading
+       
+<<
+
+            /Shading
+                
+<<
+/ColorSpace /DeviceGray
+
+                  /Function
+                       
+<<
+
+                            /FunctionType 2
+
+                           /N 1
+
+                           /Domain [0 1]
+
+                       >>
+
+                       /ShadingType 2
+
+                      /Coords [0 0 300 300]
+
+                      /Extend [true true]
+
+                 >>
+
+                 /PatternType 2
+                
+/Type /Pattern
+
+         >>
+
+       >>
+
+>>
+
+endobj
+
+200 0 obj
+<<
+/Type /Page
+/Parent 3 0 R
+/Resources 133 0 R
+/MediaBox [0 0 612 792]
+/Contents 201 0 R
+>>
+endobj
+
+201 0 obj
+<</Length 100>>
+stream
+/X2 DO
+endstream
+endobj
+
+
+5 0 obj
+<< /Length 44 >>
+stream
+BT
+/F1 24 Tf
+20 TL
+20 600 Td (This is Page 1) Tj
+/F1 12 Tf
+1 0 0 rg  % Example comment
+0 -50 Td (Here's another line with font set to 12) Tj
+5 Tc
+T* (And a third with letter spacing) Tj
+ET
+/MyObject DO
+endstream
+
+endobj
+
+14 0 obj
+<<
+/Type /XObject
+/Subtype /Form
+/Name MyObject
+/FormType 1
+/BBox [0 0 100 100]
+/Length 44
+>>
+stream
+BT
+/F1 24 Tf
+20 TL
+0 0 1 RG
+0 0 Td (This is XObject) Tj
+/F1 12 Tf
+0 1 0 rg  % Example comment
+0 -50 Td (This is coming from 14 0) Tj
+5 Tc
+T* (And a third with letter spacing) Tj
+% Shortcut way of adding another
+(And a fourth string)'
+ET
+endstream
+endobj
+
+
+15 0 obj
+
+<<
+
+/Subtype /Form
+
+/Length 70
+
+/Type /XObject
+
+/BBox [0 0 792 612]
+
+>>
+
+stream
+
+2.0 w
+0.5 g
+250 300 m 350 400 450 500 550 300 c
+450 300 350 250 y h B
+
+
+endstream
+
+endobj
+
+
+
+% Test additional page content
+11 0 obj
+<< /Length 44 >>
+stream
+BT
+/F1 24 Tf
+20 TL
+0 0 1 RG
+50 600 Td (This is Page 2) Tj
+/F1 12 Tf
+0 1 0 rg  % Example comment
+0 -50 Td (Here's another line with font set to 12) Tj
+5 Tc
+T* (And a third with letter spacing) Tj
+% Shortcut way of adding another
+(And a fourth string)'
+ET
+endstream
+MyObject DO
+endobj
+
+202 0 obj 
+<<
+/Type /XObject
+/Subtype /Form
+/Length 69
+/BBox [0 0 792 612]
+>>
+stream
+2.0 w
+0.5 g
+250 300 m 350 400 450 500 500 300 c
+450 300 350 250 y h B
+endstream
+endobj
+
+
+6 0 obj
+[/PDF /Text]
+endobj
+7 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Helvetica
+/Encoding /MacRomanEncoding
+>>
+endobj
+
+xref
+0 8
+0000000000 65535 f
+0000000009 00000 n
+0000000074 00000 n
+0000000120 00000 n
+0000000179 00000 n
+0000000322 00000 n
+0000000415 00000 n
+0000000445 00000 n
+trailer
+<<
+/Size 8
+/Root 1 0 R
+>>
+startxref
+553
+%%EOF

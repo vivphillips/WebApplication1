@@ -10,9 +10,6 @@
 -->
 <ServiceDefinition name="WindowsAzure2" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-05.1.7">
   <WebRole name="WebApplication1" vmsize="Small">
-    <Startup>
-      <Task commandLine="startup\startup.cmd" executionContext="limited" taskType="simple"></Task>
-    </Startup>
     <Sites>
       <Site name="Web">
         <Bindings>
@@ -22,13 +19,11 @@
     </Sites>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
-      <InputEndpoint name="Microsoft.WindowsAzure.Plugins.WebDeploy.InputEndpoint" protocol="tcp" port="8172" localPort="8172" />
     </Endpoints>
     <Imports>
       <Import moduleName="Diagnostics" />
       <Import moduleName="RemoteAccess" />
       <Import moduleName="RemoteForwarder" />
-      <Import moduleName="WebDeploy" />
     </Imports>
     <LocalResources>
       <LocalStorage name="LocalStorage1" cleanOnRoleRecycle="false" />

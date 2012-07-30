@@ -75,22 +75,11 @@
   <ItemGroup>
     <Content Include="AjaxTest.aspx" />
     <Content Include="BlobStoreTest.aspx" />
+    <Content Include="GetPdf.aspx" />
     <Content Include="normalize.css" />
-    <Content Include="PDF_Merge\libiconv2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="PDF_Merge\pdftk.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\WebForm1Script.js" />
     <Content Include="SocketTest.aspx" />
-    <Content Include="startup\Microsoft.WindowsAzure.StorageClient.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="startup\packagedownloader.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="SVGS\delux.svg" />
     <Content Include="SVGS\Test3.svg">
       <SubType>Designer</SubType>
@@ -127,6 +116,13 @@
     </Compile>
     <Compile Include="BlobStoreTest.aspx.designer.cs">
       <DependentUpon>BlobStoreTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetPdf.aspx.cs">
+      <DependentUpon>GetPdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetPdf.aspx.designer.cs">
+      <DependentUpon>GetPdf.aspx</DependentUpon>
     </Compile>
     <Compile Include="Handler1.ashx.cs">
       <DependentUpon>Handler1.ashx</DependentUpon>
@@ -194,12 +190,12 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PDF_Temp\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="startup\startup.cmd">
+    <Content Include="startup.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PDFs\TextExample.pdf" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

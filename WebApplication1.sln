@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextHandling", "TextHandlin
 EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "WindowsAzure2", "WindowsAzure2\WindowsAzure2.ccproj", "{6BD2E2FF-DFDF-4679-AB0B-52F028DC2AF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFHandler", "PDFWriter\PDFHandler.csproj", "{8F12D64C-67A2-48B3-A0B3-BFF07624D876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFTester", "PDFTester\PDFTester.csproj", "{F8E75CBB-2BD5-4A1E-81E3-A339CBFE0E62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,10 +25,18 @@ Global
 		{6BD2E2FF-DFDF-4679-AB0B-52F028DC2AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BD2E2FF-DFDF-4679-AB0B-52F028DC2AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BD2E2FF-DFDF-4679-AB0B-52F028DC2AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F12D64C-67A2-48B3-A0B3-BFF07624D876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F12D64C-67A2-48B3-A0B3-BFF07624D876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F12D64C-67A2-48B3-A0B3-BFF07624D876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F12D64C-67A2-48B3-A0B3-BFF07624D876}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C72B4D90-E995-4EB8-AC8E-73D2ACC8B9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C72B4D90-E995-4EB8-AC8E-73D2ACC8B9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C72B4D90-E995-4EB8-AC8E-73D2ACC8B9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C72B4D90-E995-4EB8-AC8E-73D2ACC8B9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E75CBB-2BD5-4A1E-81E3-A339CBFE0E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E75CBB-2BD5-4A1E-81E3-A339CBFE0E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E75CBB-2BD5-4A1E-81E3-A339CBFE0E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E75CBB-2BD5-4A1E-81E3-A339CBFE0E62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

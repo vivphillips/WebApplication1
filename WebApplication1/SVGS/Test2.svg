@@ -35,7 +35,7 @@
     </symbol>
 
     <!--Sheet-->
-    <g transform="scale(3.54330709,3.54330709) translate(5,10)" id="ATest">
+    <g transform="scale(3.7795,3.7795) translate(5,10)" id="ATest">
         <!--Row 1-->
         <g transform="translate(0,0)">
             <use xlink:href="#theRow"></use>
