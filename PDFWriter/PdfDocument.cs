@@ -50,7 +50,7 @@ namespace LLL.PDFHandler
             SortedDictionary<int, int> XRefs = new SortedDictionary<int, int>();
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("%PDF-1.2");
+            sb.AppendLine("%PDF-1.6");
             foreach (PdfFont f in Fonts)
             {
                 XRefs.Add(f.Ref, sb.Length);
@@ -68,6 +68,8 @@ namespace LLL.PDFHandler
                 XRefs.Add(xObject.Ref, sb.Length);
                 sb.Append(xObject);
             }
+
+
 
             foreach (PdfPage p in PageList)
             {
@@ -126,6 +128,8 @@ namespace LLL.PDFHandler
             return c;
         }
 
+ 
+
         public PdfPageTreeNode GetPageTreeNode()
         {
             PdfPageTreeNode node = new PdfPageTreeNode();
@@ -145,8 +149,10 @@ namespace LLL.PDFHandler
             page.Add("Type", "/Page");
             page.Add("Parent", string.Format("{0} 0 R", Pages.Ref));
             page.Add("Contents", "");
-            //TODO: Do this properly
-            page.Add("MediaBox", "[0 0 1000 1000]");
+            //TODO: Hard coded A4 - Do this properly
+            //page.Add("MediaBox", "[0 0 595.27 841.88]");
+            page.Add("MediaBox", "[0 0 133.22 189.92]");
+            
             //PageList.Add(page);
             return page;
         }

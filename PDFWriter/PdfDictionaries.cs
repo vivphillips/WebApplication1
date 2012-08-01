@@ -11,8 +11,6 @@ namespace LLL.PDFHandler
     {
     }
 
-    
-
     public class PdfDictionary : Dictionary<string, string>,IPdfItem
     {
 
@@ -92,7 +90,7 @@ namespace LLL.PDFHandler
 
     public class PdfPageTreeNode : IndirectPdfDictionary
     {
-
+ 
     }
 
     public class PdfFont : IndirectPdfDictionary

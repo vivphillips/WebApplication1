@@ -80,7 +80,10 @@
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\WebForm1Script.js" />
     <Content Include="SocketTest.aspx" />
-    <Content Include="SVGS\delux.svg" />
+    <Content Include="SVGS\delux.svg">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SVGS\Keyline 179.76mm x 57.8mm.svg" />
     <Content Include="SVGS\Test3.svg">
       <SubType>Designer</SubType>
     </Content>

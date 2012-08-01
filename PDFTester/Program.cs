@@ -7,32 +7,18 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 
+
 namespace PDFTester
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Test2();
+            Test4();
 
-            //Dictionary<string, IPdfItem> dict = new Dictionary<string, IPdfItem>();
-
-            //dict.Add("Resources",new PdfDictionary());
-
-            //Dictionary<string, object> dict2 = new Dictionary<string, object>();
-
-            //dict2.Add("Test", new PdfDictionary());
-            //dict2.Add("Type","/Page");
-
-            //StringBuilder sb = new StringBuilder();
-            //foreach (object o in dict2)
-            //{
-            //        sb.Append(o);
-            //}
-            
         }
 
-  
+
 
         private static void Test1()
         {
@@ -93,15 +79,15 @@ namespace PDFTester
 
             //Create two Text Elements
             PdfTextElement element = doc.GetTextElement();
-            element.Content = "On brown bread";
+            element.Content = "18 Point";
             element.FontId = font.FontId;
             element.FontSize = 18;
             element.Position = new PointF { X = 0, Y = 0 };
 
             PdfTextElement element2 = doc.GetTextElement();
-            element2.Content = "Ham and Cheese";
+            element2.Content = "25 Point";
             element2.FontId = font.FontId;
-            element2.FontSize = 36;
+            element2.FontSize = 25;
             element2.Position = new PointF { X = 0, Y = 50 };
 
 
@@ -116,14 +102,17 @@ namespace PDFTester
 
             //Create a page and reference the label
             PdfPage page = doc.GetPage();
+            page.Add("UserUnit", "0.5");
             page.AddXObject(form);
 
             //Create the page contents (to show six instances of the XObject (label)
             PdfStream pageStream = doc.GetPdfStream();
-            pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 100 200 cm {0} Do", form.XObjectId)));
+
+            pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 50 200 cm {0} Do", form.XObjectId)));
             pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0   200 cm {0} Do", form.XObjectId)));
+
             pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0   200 cm {0} Do", form.XObjectId)));
-            pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 400 -400 cm {0} Do", form.XObjectId)));
+            pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 200 -400 cm {0} Do", form.XObjectId)));
             pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0 200 cm {0} Do", form.XObjectId)));
             pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0 200 cm {0} Do", form.XObjectId)));
             page.PageContents = pageStream;
@@ -134,6 +123,8 @@ namespace PDFTester
             //Note: Although this adds an additional reference to the same page in the Pages list
             //and the Document shows two pages the second page is blank.....  needs investigating....
             doc.PageList.Add(page);
+            doc.PageList.Add(page);
+            doc.PageList.Add(page);
 
 
             //Output the document
@@ -141,5 +132,99 @@ namespace PDFTester
             System.IO.File.WriteAllText(@"Junk.pdf", final);
 
         }
+
+        private static void Test4()
+        {
+            PdfDocument doc = new PdfDocument();
+
+            //Set up font
+            PdfFont font = doc.GetFont();
+            font.Add("BaseFont", "/Times-Italic");
+            font.Add("Subtype", "/Type1");
+
+            //Create two Text Elements
+            PdfTextElement element = doc.GetTextElement();
+            element.Content = "18 Point";
+            element.FontId = font.FontId;
+            element.FontSize = 18;
+            element.Position = new PointF { X = 28.34F, Y = 85.02F };
+
+            PdfTextElement element2 = doc.GetTextElement();
+            element2.Content = "25 Point";
+            element2.FontId = font.FontId;
+            element2.FontSize = 25;
+            element2.Position = new PointF { X = 28.35F, Y = 113.38F };
+
+
+            //Create an XObject (Label)
+            PdfXObjectForm form = doc.GetPdfXForm();
+            form.AddElement(element);
+            form.AddElement(element2);
+
+            form.AddElement(new PdfLiteralStreamElement("28.74 28.74 m 56.69 28.74 l 56.69 56.69 l 28.74 56.69 l 28.74 28.74 l S"));
+            form.BBox = "[0 0 1000 1000]";
+            form.AddFont(font);
+            //Add to the XObject collection of the docuemnt
+            doc.XForms.Add(form);
+
+            //Create a page and reference the label
+            for (int i = 0; i < 5; i++)
+            {
+            PdfPage page = doc.GetPage();
+            page.Add("UserUnit", "0.5");
+            page.AddXObject(form);
+
+            //Create the page contents (to show six instances of the XObject (label)
+      
+                PdfStream pageStream = doc.GetPdfStream();
+
+                pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0 0 cm {0} Do", form.XObjectId)));
+                //pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0   200 cm {0} Do", form.XObjectId)));
+
+                //pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0   200 cm {0} Do", form.XObjectId)));
+                //pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 200 -400 cm {0} Do", form.XObjectId)));
+                //pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0 200 cm {0} Do", form.XObjectId)));
+                //pageStream.AddElement(new PdfLiteralStreamElement(string.Format("1 0 0 1 0 200 cm {0} Do", form.XObjectId)));
+                page.PageContents = pageStream;
+
+                //Add the page to the document
+                doc.PageList.Add(page);
+            }
+
+            //Note: Although this adds an additional reference to the same page in the Pages list
+            //and the Document shows two pages the second page is blank.....  needs investigating....
+           // doc.PageList.Add(page);
+           // doc.PageList.Add(page);
+           // doc.PageList.Add(page);
+
+
+            //Output the document
+            string final = doc.Render();
+            System.IO.File.WriteAllText(@"Junk.pdf", final);
+
+        }
+
+
+        private static void Test3()
+        {
+
+            LLL.PDFHander2.PdfPage page = new LLL.PDFHander2.PdfPage(3);
+            page.MediaBox = new LLL.PDFHander2.PdfRectangle(0, 0, 500, 500);
+            page.Parent = new LLL.PDFHander2.PdfIndirectReference(27);
+
+            LLL.PDFHander2.PdfArray refs = new LLL.PDFHander2.PdfArray();
+            refs.Add(new LLL.PDFHander2.PdfIndirectReference(7));
+            refs.Add(new LLL.PDFHander2.PdfIndirectReference(8));
+            refs.Add(new LLL.PDFHander2.PdfIndirectReference(9));
+
+            page.Resources.Add("Links", refs);
+
+            string s = page.ToString();
+  
+
+        }
+
+
+ 
     }
 }
